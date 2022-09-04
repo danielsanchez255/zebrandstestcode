@@ -1,7 +1,20 @@
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import logo from '../../logo.svg';
 import './Home.css';
 
+import { gettingGitUsers } from '../../slices/gitUsersSlice.js';
+
 const Home = () => {
+
+  const gitUsers = useSelector((state) => state.gitUsersReducer);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    console.log("gitUsers: ", gitUsers);
+    dispatch(gettingGitUsers);
+  }, []);
+
   return (
     <div className="App">
       <header className="App-header">
