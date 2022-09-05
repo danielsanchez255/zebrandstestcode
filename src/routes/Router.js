@@ -7,12 +7,14 @@ import {
 
 //Pages
 import Home from '../pages/home/Home.jsx';
+import Repositories from '../pages/repositories/Repositories.jsx'
 
 function Router() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home/>}/>
+        <Route path="/repositories" element={<Repositories/>}/>
       </Routes>
     </BrowserRouter>
   );

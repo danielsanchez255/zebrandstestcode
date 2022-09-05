@@ -3,17 +3,21 @@ import { useSelector, useDispatch } from 'react-redux';
 import logo from '../../logo.svg';
 import './Home.css';
 
-import { gettingGitUsers } from '../../slices/gitUsersSlice.js';
+import { gettingGitUsers, gettingGitRepositories } from '../../slices/githubSlice.js';
 
 const Home = () => {
 
-  const gitUsers = useSelector((state) => state.gitUsersReducer);
+  const gitUsers = useSelector((state) => state.githubReducer);
+  
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log("gitUsers: ", gitUsers);
-    dispatch(gettingGitUsers);
+    
   }, []);
+
+  const clickHandler = () => {
+    dispatch(gettingGitUsers('redux'));
+  }
 
   return (
     <div className="App">
@@ -22,14 +26,15 @@ const Home = () => {
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
-        <a
+        <button
           className="App-link"
-          href="https://reactjs.org"
+          type="button"
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => clickHandler()}
         >
           Learn React
-        </a>
+        </button>
       </header>
     </div>
   );
