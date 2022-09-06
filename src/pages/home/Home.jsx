@@ -1,41 +1,28 @@
-import { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import logo from '../../logo.svg';
+import React, { useState } from 'react';
+
+//Components
+import Button from '../../components/button/Button';
+import Cards from '../../components/cards/Cards';
+import Input from '../../components/input/Input';
+import Navbar from '../../components/navbar/Navbar';
+
+//Styles
 import './Home.css';
 
-import { gettingGitUsers, gettingGitRepositories } from '../../slices/githubSlice.js';
 
 const Home = () => {
 
-  const gitUsers = useSelector((state) => state.githubReducer);
-  
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    
-  }, []);
-
-  const clickHandler = () => {
-    dispatch(gettingGitUsers('redux'));
-  }
+  const [search, setSearch] = useState('');
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <button
-          className="App-link"
-          type="button"
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={() => clickHandler()}
-        >
-          Learn React
-        </button>
-      </header>
+    <div className="container mt-5 text-center">
+      <Navbar />
+      <h1>Github Users</h1>
+      <div className="searchBar">
+        <Input placeholder={'Search user'} setSearch={setSearch} />
+        <Button search={search} />
+      </div>
+      <Cards />
     </div>
   );
 }

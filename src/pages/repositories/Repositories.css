@@ -1,0 +1,12 @@
+.searchBar {
+    background-color: white;
+    padding: 5px;
+    border-radius: 10px;
+    width: 18rem;
+    align-self: center;
+    position: absolute;
+    left: 0; 
+    right: 0; 
+    margin-left: auto; 
+    margin-right: auto;
+}

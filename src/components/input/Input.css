@@ -1,0 +1,12 @@
+.inputSearch {
+    align-self: center;
+    color: palevioletred;
+    font-size: 1em;
+    border: transparent;
+    border-radius: 3px;
+}
+
+.inputSearch:focus-visible {
+    outline: none;
+    color: #000;
+}

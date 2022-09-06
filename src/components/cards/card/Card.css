@@ -1,0 +1,20 @@
+.link {
+    background: rgb(205,113,0);
+    background: linear-gradient(100deg, rgba(205,113,0,1) 18%, rgba(171,35,85,1) 61%);
+    align-self: center;
+    color: white;
+    font-size: 1em;
+    border-radius: 3px;
+    padding: 5px;
+}
+
+.link:hover {
+    background: rgb(167, 92, 0);
+    background: linear-gradient(100deg, rgb(160, 88, 0) 18%, rgb(135, 27, 67) 61%);
+    align-self: center;
+    color: white;
+    font-size: 1em;
+    border-radius: 3px;
+    padding: 5px;
+    text-decoration: none;
+}

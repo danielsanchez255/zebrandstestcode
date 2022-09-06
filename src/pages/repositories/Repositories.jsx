@@ -1,23 +1,27 @@
-import logo from '../../logo.svg';
+import React, { useState } from 'react';
+
+//Components
+import Button from '../../components/button/Button';
+import Cards from '../../components/cards/Cards';
+import Input from '../../components/input/Input';
+import Navbar from '../../components/navbar/Navbar';
+
+//Styles
 import './Repositories.css';
 
 const Repositories = () => {
+
+  const [search, setSearch] = useState('');
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Repositories
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container mt-5 text-center">
+      <Navbar />
+      <h1>Github Repositories</h1>
+      <div className="searchBar">
+        <Input placeholder={'Search a repository'} setSearch={setSearch} />
+        <Button search={search} />
+      </div>
+      <Cards />
     </div>
   );
 }

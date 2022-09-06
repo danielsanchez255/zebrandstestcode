@@ -4,7 +4,7 @@ const API = axios.create({
     baseURL: 'https://api.github.com/',
     headers: {
         'Accept': 'application/vnd.github.v3+json',
-        'Authorization': 'Bearer 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'
+        'Authorization': 'Bearer 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'
     } 
 });
 

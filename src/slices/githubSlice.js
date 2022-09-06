@@ -1,8 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import * as api from '../api';
 
-export const gettingGitUsers = createAsyncThunk(
-  "github/gettingGitUsers",
+export const fetchGitUsers = createAsyncThunk(
+  "github/fetchGitUsers",
   async ( searchUsers ) => {
     const res = api.fetchGitHubUsers(searchUsers);
 
@@ -16,8 +16,8 @@ export const gettingGitUsers = createAsyncThunk(
   }
 );
 
-export const gettingGitRepositories = createAsyncThunk(
-  "github/gettingGitRepositories",
+export const fetchGitRepositories = createAsyncThunk(
+  "github/fetchGitRepositories",
   async ( searchRepository ) => {
     const res = api.fetchGitHubRepositories(searchRepository);
 
@@ -34,31 +34,33 @@ export const gettingGitRepositories = createAsyncThunk(
 const githubSlice = createSlice({
   name: "github",
   initialState: {
-    loadingUsers: false,
-    loadingRepositories: false,
+    loading: false,
     itemsGitUsers: [],
     itemsGitRepositories: []
   },
-  reducers: {
-    filteredGitUsers: (state, action) => {
-
-    }
-  },
+  reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(gettingGitUsers.pending, (state, action) => {
-      state.loadingUsers = true;
+    builder.addCase(fetchGitUsers.pending, (state, action) => {
+      state.loading = true;
     });
-    builder.addCase(gettingGitUsers.fulfilled, (state, action) => {
-      state.loadingUsers = false;
-      console.log("Git users: ", action.payload.items);
-      //state.itemsGitUsers.push(action.payload.items);
+    builder.addCase(fetchGitUsers.fulfilled, (state, action) => {
+      state.loading = false;
+      state.itemsGitUsers = action.payload.items;
+      state.itemsGitRepositories = [];
     });
-    builder.addCase(gettingGitRepositories.pending, (state, action) => {
-      state.loadingRepositories = true;
+    builder.addCase(fetchGitUsers.rejected, (state, action) => {
+      state.loading = true;
     });
-    builder.addCase(gettingGitRepositories.fulfilled, (state, action) => {
-      state.loadingRepositories = false;
-      console.log("Git repositories: ", action.payload);
+    builder.addCase(fetchGitRepositories.pending, (state, action) => {
+      state.loading = true;
+    });
+    builder.addCase(fetchGitRepositories.fulfilled, (state, action) => {
+      state.loading = false;
+      state.itemsGitRepositories = action.payload.items;
+      state.itemsGitUsers = [];
+    });
+    builder.addCase(fetchGitRepositories.rejected, (state, action) => {
+      state.loading = true;
     });
   }
 });
